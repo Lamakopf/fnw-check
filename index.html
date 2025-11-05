@@ -3,13 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Workshop: Gefahren von Fake News</title>
+<title>Workshop: Fake News prüfen (Gruppenarbeit)</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#fff; --ink:#111; --muted:#555; --line:#e5e8ee;
-  --brand:#0b72ff; --card:#f8f9fc;
-}
+:root { --bg:#fff; --ink:#111; --muted:#555; --line:#e5e8ee; --brand:#0b72ff; --card:#f8f9fc; }
 body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink);line-height:1.6;}
 main{max-width:1100px;margin:32px auto;padding:0 16px;}
 h1{font-size:clamp(22px,2.6vw,28px);}
@@ -27,6 +24,8 @@ h2{margin-top:1rem;}
 .input{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;}
 .label{font-size:.9rem;color:var(--muted);}
 .notice{background:#fff7e6;border:1px solid #ffe4b5;padding:10px;border-radius:10px;margin-top:10px;}
+.small{font-size:.95rem;}
+hr.sep{border:none;border-top:1px solid var(--line);margin:8px 0 12px}
 </style>
 </head>
 <body>
@@ -34,14 +33,35 @@ h2{margin-top:1rem;}
 
 <!-- ================= START ================= -->
 <section id="view-home">
-  <h1>Gefahren von Fake News – Gruppenarbeit</h1>
-  <p class="lead">Wählen Sie ein Themenfeld aus. Jede Gruppe erarbeitet, welche <strong>Gefahren entstehen können</strong>, wenn Falschinformationen nicht gestoppt werden.</p>
+  <h1>Fake News prüfen – Gruppenarbeit</h1>
+  <p class="lead">
+    Ziel: <strong>Kurze Nachrichten lesen und prüfen.</strong> Jede Gruppe bekommt von der Lehrkraft eine <strong>Gruppennummer</strong> (1–4) und öffnet unten ihr Thema.
+  </p>
 
   <div class="grid cols-2">
-    <div class="card"><h2>👥 Gesellschaft</h2><p>Wie beeinflussen Falschinformationen das gesellschaftliche Miteinander?</p><button class="btn" onclick="openGroup('g1')">Thema öffnen</button></div>
-    <div class="card"><h2>🏛 Politik</h2><p>Welche Folgen können Fehlinformationen für politische Entscheidungen haben?</p><button class="btn" onclick="openGroup('g2')">Thema öffnen</button></div>
-    <div class="card"><h2>⚕ Gesundheit</h2><p>Welche Risiken entstehen durch Falschmeldungen zu Medizin oder Krankheit?</p><button class="btn" onclick="openGroup('g3')">Thema öffnen</button></div>
-    <div class="card"><h2>🌍 Umwelt</h2><p>Wie verändern Desinformationen den Blick auf Klima und Natur?</p><button class="btn" onclick="openGroup('g4')">Thema öffnen</button></div>
+    <div class="card">
+      <h2>👥 Gesellschaft (Gruppe 1)</h2>
+      <p class="small">Wie verändern Falschmeldungen Vertrauen und Zusammenhalt?</p>
+      <button class="btn" onclick="openGroup('g1')">Gruppe 1 öffnen</button>
+    </div>
+
+    <div class="card">
+      <h2>🏛 Politik (Gruppe 2)</h2>
+      <p class="small">Welche Folgen haben Fehlinformationen für politische Entscheidungen?</p>
+      <button class="btn" onclick="openGroup('g2')">Gruppe 2 öffnen</button>
+    </div>
+
+    <div class="card">
+      <h2>⚕ Gesundheit (Gruppe 3)</h2>
+      <p class="small">Welche Risiken entstehen durch Falschmeldungen zu Medizin/Krankheit?</p>
+      <button class="btn" onclick="openGroup('g3')">Gruppe 3 öffnen</button>
+    </div>
+
+    <div class="card">
+      <h2>🌍 Umwelt (Gruppe 4)</h2>
+      <p class="small">Wie beeinflussen Desinformationen den Blick auf Klima und Natur?</p>
+      <button class="btn" onclick="openGroup('g4')">Gruppe 4 öffnen</button>
+    </div>
   </div>
 </section>
 
@@ -53,18 +73,17 @@ h2{margin-top:1rem;}
 
   <div class="card">
     <h2>🧭 Arbeitsauftrag</h2>
-    <p>Erarbeiten Sie in Ihrer Gruppe <strong>alle Gefahren</strong>, die entstehen können, wenn Fake News in Ihrem Themenbereich <strong>nicht gestoppt werden</strong>.</p>
     <ol>
-      <li>Diskutieren Sie gemeinsam: Welche Folgen hat es, wenn viele Menschen einer Falschmeldung glauben?</li>
-      <li>Halten Sie mindestens <b>drei zentrale Gefahren</b> oder Konsequenzen fest, die Sie für besonders relevant halten.</li>
-      <li>Notieren Sie Ihre Ergebnisse stichpunktartig auf Ihrem Arbeitsblatt oder in Ihrem digitalen Dokument.</li>
+      <li>Lesen Sie die <strong>kurze Nachricht</strong> Ihrer Gruppe aufmerksam.</li>
+      <li>Prüfen Sie die Nachricht mit der <strong>Checkliste</strong> in Box&nbsp;2.</li>
+      <li>Notieren Sie <strong>Belege</strong> (Namen, Datum, Daten/Links) und <strong>offene Fragen</strong>.</li>
+      <li>Formulieren Sie ein <strong>Fazit</strong>: „Glaubwürdig / Unsicher / Vorsicht“ – mit kurzer Begründung.</li>
     </ol>
-    <p class="notice">Hinweis: Überlegen Sie, wer betroffen ist – einzelne Personen, Gruppen oder die Gesellschaft insgesamt.</p>
   </div>
 
   <div class="help card">
     <details open>
-      <summary>💡 Denkimpulse & Ideen zum Einstieg</summary>
+      <summary>🧰 Material Ihrer Gruppe</summary>
       <div class="content" id="materialBox"></div>
     </details>
   </div>
@@ -73,10 +92,10 @@ h2{margin-top:1rem;}
     <h2>📝 Links zu den Arbeitsdokumenten</h2>
     <div class="label">
       <ul>
-        <li>Gesellschaft: <a href="https://cryptpad.fr/pad/#/2/pad/edit/VPzZgMBcAf57cmIYcNsmfros/">Link</a></li>
-        <li>Gesundheit: <a href="https://cryptpad.fr/pad/#/2/pad/edit/zojh4YNoAsntQ2dL35-sc9EO/">Link</a></li>
-        <li>Politik: <a href="https://cryptpad.fr/pad/#/2/pad/edit/NEQc5uNvEbNb7aOmFXjP5r7C/">Link</a></li>
-        <li>Umwelt: <a href="https://cryptpad.fr/pad/#/2/pad/edit/2Whr8U5INFVZRq+Xlpt4vuG3/">Link</a></li>
+        <li>Gruppe 1 (Gesellschaft): <a href="https://cryptpad.fr/pad/#/2/pad/edit/VPzZgMBcAf57cmIYcNsmfros/">Link</a></li>
+        <li>Gruppe 3 (Gesundheit): <a href="https://cryptpad.fr/pad/#/2/pad/edit/zojh4YNoAsntQ2dL35-sc9EO/">Link</a></li>
+        <li>Gruppe 2 (Politik): <a href="https://cryptpad.fr/pad/#/2/pad/edit/NEQc5uNvEbNb7aOmFXjP5r7C/">Link</a></li>
+        <li>Gruppe 4 (Umwelt): <a href="https://cryptpad.fr/pad/#/2/pad/edit/2Whr8U5INFVZRq+Xlpt4vuG3/">Link</a></li>
       </ul>
     </div>
   </div>
@@ -87,98 +106,88 @@ h2{margin-top:1rem;}
 <script>
 const GROUPS = {
   g1: {
-    title:"Gesellschaft",
-    lead:"Wie Fake News das Vertrauen und den sozialen Zusammenhalt in einer Gesellschaft beeinträchtigen können.",
+    title:"Gruppe 1 – Gesellschaft",
+    lead:"Aufgabe: Lest eure Nachricht und prüft sie mit der Checkliste. Ziel: Folgen von Fehlinformationen für Vertrauen und Zusammenhalt erkennen.",
     material:`
       <ul>
-        <li>Wenn Menschen ständig widersprüchliche Informationen erhalten, entsteht Unsicherheit – wem kann man noch vertrauen?</li>
-        <li>Starke Emotionen wie Wut, Angst oder Misstrauen fördern vorschnelle Urteile.</li>
-        <li>Wenn Gruppen einander nicht mehr vertrauen, schwächt das das Gemeinschaftsgefühl.</li>
-        <li>Falschmeldungen können Menschen oder Gruppen verzerrt darstellen – das prägt, wie andere über sie denken und handeln.</li>
-      </ul>`
+        <li>Widersprüchliche Infos erzeugen Unsicherheit – wem glaubt man noch?</li>
+        <li>Starke Emotionen (Wut/Angst) → schnelle Urteile, starke Lagerbildung.</li>
+        <li>Falschmeldungen können Gruppen verzerrt darstellen und Konflikte schüren.</li>
+        <li>Fragt euch: Wer gewinnt durch die Nachricht? Wer verliert?</li>
+      </ul>
+    `
   },
 
   g2: {
-    title:"Politik",
-    lead:"Wie Fake News das Vertrauen in politische Prozesse und Institutionen untergraben können.",
+    title:"Gruppe 2 – Politik",
+    lead:"Aufgabe: Lest eure Nachricht und prüft sie mit der Checkliste. Ziel: Wirkung von Fehlinformationen auf politische Entscheidungen verstehen.",
     material:`
       <ul>
-        <li>Wenn Bürgerinnen und Bürger falsche Informationen über Politik oder Gesetze glauben, treffen sie Entscheidungen auf unsicherer Grundlage.</li>
-        <li>Eine ständige Flut von Fehlinformationen kann den Eindruck erzeugen, „niemand sagt mehr die Wahrheit“ – das schwächt Vertrauen in die Demokratie.</li>
-        <li>Emotional aufgeladene Botschaften verbreiten sich schneller als sachliche Fakten.</li>
-        <li>Wenn Inhalte nur noch nach Lautstärke und Empörung bewertet werden, verliert politische Diskussion an Tiefe.</li>
-      </ul>`
+        <li>Falsche Infos zu Gesetzen/Wahlen → falsche Entscheidungen.</li>
+        <li>„Niemand sagt die Wahrheit“ schwächt Vertrauen in Institutionen.</li>
+        <li>Empörung verbreitet sich schneller als nüchterne Fakten.</li>
+        <li>Prüft: Wer ist Absender? Gibt es offizielle Korrekturen/Statements?</li>
+      </ul>
+    `
   },
 
   g3: {
-    title:"Gesundheit",
-    lead:"Wie falsche Informationen über medizinische Themen Schaden anrichten können.",
+    title:"Gruppe 3 – Gesundheit",
+    lead:"Aufgabe: Lest die Nachricht (Box 1) und prüft sie systematisch mit der Checkliste (Box 2). Ziel: Risiken von Gesundheits-Fakes erkennen.",
     material:`
-      <!-- 2x2-Grid: Nur Box 1 ist befüllt, 2–4 bleiben frei -->
       <div class="grid cols-2">
 
-        <!-- Box 1: Artikel (gesundheit) -->
+        <!-- Box 1: Nachricht / Artikel -->
         <article class="card" aria-labelledby="a1h">
           <h2 id="a1h">📰 Gefährliche Bakterien breiten sich unbemerkt aus</h2>
-          <p class="label">Arbeitsauftrag Gruppe 1: Lest den Text. Prüft ihn mit eurer Checkliste. Notiert Belege & offene Fragen.</p>
-          <hr style="border:none;border-top:1px solid var(--line);margin:8px 0 12px">
+          <p class="label">Lest den Text. Prüft ihn mit der Checkliste. Notiert Belege & offene Fragen.</p>
+          <hr class="sep">
 
-          <p><strong>Immer mehr Menschen</strong> berichten über rätselhafte Symptome: Müdigkeit, Hautausschläge, Kopfschmerzen. 
-          <em>Fachleute vermuten</em>, dass unsichtbare Bakterien im Körper dafür verantwortlich sein könnten. 
-          Sie sollen sich im Gewebe ausbreiten und schwer behandelbare Entzündungen auslösen.</p>
+          <p><strong>Immer mehr Menschen</strong> berichten über rätselhafte Symptome: Müdigkeit, Hautausschläge, Kopfschmerzen.
+          <em>Fachleute vermuten</em>, dass unsichtbare Bakterien im Körper verantwortlich sein könnten. Sie sollen sich im Gewebe ausbreiten und schwer behandelbare Entzündungen auslösen.</p>
 
-          <p>„Wir sehen derzeit ungewöhnlich viele Fälle, deren Ursache wir uns nicht erklären können“, 
-          sagt <strong>Dr. Lisa Brenner</strong>, Internistin aus Hamburg. „Viele Patienten wissen gar nicht, was mit ihnen geschieht.“</p>
+          <p>„Wir sehen derzeit ungewöhnlich viele Fälle, deren Ursache wir uns nicht erklären können“, sagt <strong>Dr. Lisa Brenner</strong>, Internistin aus Hamburg.
+          „Viele Patienten wissen gar nicht, was mit ihnen geschieht.“</p>
 
-          <p><em>Anonyme Quellen</em> behaupten, die Regierung sei seit Monaten informiert, habe aber noch keine Maßnahmen ergriffen. 
+          <p><em>Anonyme Quellen</em> behaupten, die Regierung sei seit Monaten informiert, habe aber noch keine Maßnahmen ergriffen.
           In sozialen Netzwerken mehren sich Forderungen nach mehr Aufklärung. Eltern verlangen, dass Schulen auf mögliche Risiken hinweisen.</p>
 
-          <p>Apotheken berichten von mehr Menschen, die sich <strong>selbst</strong> mit Hausmitteln oder Nahrungsergänzung „schützen“ wollen. 
+          <p>Apotheken berichten von mehr Menschen, die sich <strong>selbst</strong> mit Hausmitteln oder Nahrungsergänzung „schützen“ wollen.
           <span class="label">Offizielle Stellen raten bisher zu „Ruhe und Hygiene“.</span></p>
+        </article>
+
+        <!-- Box 2: Checkliste / Prüffragen -->
+        <aside class="card" aria-labelledby="a2h">
+          <h2 id="a2h">✅ Checkliste – So prüft ihr die Nachricht</h2>
+          <ol>
+            <li><strong>Wer spricht?</strong> Gibt es Namen/Redaktion? Was bleibt anonym?</li>
+            <li><strong>Datum & Ort:</strong> Wann wurde das gesagt/geschrieben? Wo spielt das?</li>
+            <li><strong>Belege:</strong> Zahlen, Studien, Links, Bildquelle – vorhanden oder nur Behauptungen?</li>
+            <li><strong>Mehrere Quellen:</strong> Bestätigen unabhängige Seiten dieselbe Aussage?</li>
+            <li><strong>Sprache & Gefühl:</strong> Macht der Text Angst/Druck? Viele Wertungen oder neutrale Infos?</li>
+            <li><strong>Fazit:</strong> Glaubwürdig / Unsicher / Vorsicht – mit 1–2 Sätzen begründen.</li>
+          </ol>
 
           <div class="notice">
-            <strong>Prüffragen:</strong>
-            <ul>
-              <li>Wer spricht hier mit Namen/Quelle? Was bleibt anonym?</li>
-              <li>Gibt es Daten, Belege, Studien oder nur Berichte?</li>
-              <li>Wie wirkt die Sprache auf euch (ängstlich, drängend, neutral)?</li>
-              <li>Welche Infos würdet ihr in <em>zwei weiteren, unabhängigen Quellen</em> suchen?</li>
-            </ul>
+            Tipp: Notiert konkrete Zitate (Name, Satz, Zahl, Datum) als Belege. Markiert Stellen, die ihr gegenprüfen wollt.
           </div>
-        </article>
-
-        <!-- Box 2: Frei für weitere Gruppen -->
-        <article class="card" aria-labelledby="a2h">
-          <h2 id="a2h">🗂️ Box 2 – frei</h2>
-          <p class="label">Hier kommt später ein weiterer Gruppen-Text.</p>
-        </article>
-
-        <!-- Box 3: Frei -->
-        <article class="card" aria-labelledby="a3h">
-          <h2 id="a3h">🗂️ Box 3 – frei</h2>
-          <p class="label">Hier kommt später ein weiterer Gruppen-Text.</p>
-        </article>
-
-        <!-- Box 4: Frei -->
-        <article class="card" aria-labelledby="a4h">
-          <h2 id="a4h">🗂️ Box 4 – frei</h2>
-          <p class="label">Hier kommt später ein weiterer Gruppen-Text.</p>
-        </article>
+        </aside>
 
       </div>
     `
   },
 
   g4: {
-    title:"Umwelt",
-    lead:"Wie Fake News Wahrnehmung und Handlungsbereitschaft im Bereich Klima und Nachhaltigkeit beeinflussen.",
+    title:"Gruppe 4 – Umwelt",
+    lead:"Aufgabe: Lest eure Nachricht und prüft sie mit der Checkliste. Ziel: Desinformation zu Klima/Natur erkennen.",
     material:`
       <ul>
-        <li>Falschmeldungen über Klima oder Energie können Bürgerinnen und Bürger davon abhalten, selbst aktiv zu werden.</li>
-        <li>Übertriebene oder verharmlosende Darstellungen führen zu Verwirrung: Einige halten die Lage für aussichtslos, andere für harmlos.</li>
-        <li>Manipulative Grafiken oder isolierte Zahlen können falsche Eindrücke erwecken.</li>
-        <li>Wenn Diskussionen nur noch darum gehen, wer „recht hat“, gehen Motivation und gemeinsame Verantwortung verloren.</li>
-      </ul>`
+        <li>Übertreibung vs. Verharmlosung: Beides kann in die Irre führen.</li>
+        <li>Einzelbilder/Einzelfälle sind nicht die ganze Lage – Kontext checken.</li>
+        <li>Diagramme/Skalen: Achsen, Zeiträume, Quellenangaben prüfen.</li>
+        <li>Fragt: Handelt es sich um Meinung, Werbung oder Bericht?</li>
+      </ul>
+    `
   }
 };
 
@@ -195,6 +204,5 @@ function openGroup(gid){
   show("view-work");
 }
 </script>
-
 </body>
 </html>
