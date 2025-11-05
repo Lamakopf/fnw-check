@@ -104,93 +104,94 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:8px 0 12px}
 </main>
 
 <script>
+/* Einheitlicher Lead-Text für alle Gruppen */
+const UNIFIED_LEAD =
+  "Aufgabe: Lest die Nachricht (Box 1) und prüft sie mit der Checkliste (Box 2). Ziel: Fake News erkennen und begründet bewerten.";
+
+/* Einheitliche Checkliste (Box 2) */
+const CHECKLIST = `
+  <aside class="card" aria-labelledby="a2h">
+    <h2 id="a2h">✅ Checkliste – So prüft ihr die Nachricht</h2>
+    <ol>
+      <li><strong>Wer spricht?</strong> Gibt es Namen/Redaktion? Was bleibt anonym?</li>
+      <li><strong>Datum & Ort:</strong> Wann wurde das gesagt/geschrieben? Wo spielt das?</li>
+      <li><strong>Belege:</strong> Zahlen, Studien, Links, Bildquelle – vorhanden oder nur Behauptungen?</li>
+      <li><strong>Mehrere Quellen:</strong> Bestätigen unabhängige Seiten dieselbe Aussage?</li>
+      <li><strong>Sprache & Gefühl:</strong> Macht der Text Angst/Druck? Viele Wertungen oder neutrale Infos?</li>
+      <li><strong>Fazit:</strong> Glaubwürdig / Unsicher / Vorsicht – mit 1–2 Sätzen begründen.</li>
+    </ol>
+    <div class="notice">Tipp: Notiert konkrete Zitate (Name, Satz, Zahl, Datum) als Belege. Markiert Stellen, die ihr gegenprüfen wollt.</div>
+  </aside>
+`;
+
+/* Hilfsfunktion: baut das 2-Spalten-Grid */
+function buildGrid(articleHTML) {
+  return `
+    <div class="grid cols-2">
+      ${articleHTML}
+      ${CHECKLIST}
+    </div>
+  `;
+}
+
+/* ---------- Artikeltexte (Box 1) ---------- */
+
+/* Gruppe 1 – neutral/richtig */
+const ARTICLE_G1 = `
+  <article class="card" aria-labelledby="g1h">
+    <h2 id="g1h">📰 Bakterien helfen beim Verdauen</h2>
+    <p class="label">Lest den Text. Prüft ihn mit der Checkliste. Notiert Belege & offene Fragen.</p>
+    <hr class="sep">
+    <p>Im menschlichen Darm leben viele kleine Lebewesen – sogenannte Bakterien. Die meisten davon sind nützlich. Sie helfen, dass Nahrung besser verdaut wird und der Körper wichtige Stoffe aufnehmen kann.</p>
+    <p>Manche Bakterien schützen uns sogar vor Krankheiten. Andere können aber auch schaden, wenn sie an die falsche Stelle gelangen. Forschende wollen noch genauer herausfinden, wie die Bakterien zusammenarbeiten.</p>
+  </article>
+`;
+
+/* Gruppe 2 – Fake (positiv, „Superbakterien“) */
+const ARTICLE_G2 = `
+  <article class="card" aria-labelledby="g2h">
+    <h2 id="g2h">📰 „Superbakterien“ sollen Muskeln aufbauen und seltener krank machen</h2>
+    <p class="label">Lest den Text. Prüft ihn mit der Checkliste. Notiert Belege & offene Fragen.</p>
+    <hr class="sep">
+    <p>Forscherinnen und Forscher haben eine neue Art von Bakterien im menschlichen Körper gefunden. Diese „Superbakterien“ sollen helfen, dass wir seltener krank werden und sogar schneller Muskeln aufbauen können.</p>
+    <p>„Das könnte eine Revolution für unsere Gesundheit sein“, sagt <strong>Dr. Karl Sommer</strong> vom Gesundheitszentrum Süd. In ersten Versuchen hätten die Bakterien erstaunliche Ergebnisse gezeigt. Das Ministerium prüft nun, ob alle Menschen diese nützlichen Bakterien als Tablette bekommen können. „Damit werden wir gesünder als je zuvor“, heißt es in der Mitteilung.</p>
+  </article>
+`;
+
+/* Gruppe 3 – Fake (nüchtern-emotional, glaubwürdig klingend) – hattest du schon; hier unverändert */
+const ARTICLE_G3 = `
+  <article class="card" aria-labelledby="g3h">
+    <h2 id="g3h">📰 Gefährliche Bakterien breiten sich unbemerkt aus</h2>
+    <p class="label">Lest den Text. Prüft ihn mit der Checkliste. Notiert Belege & offene Fragen.</p>
+    <hr class="sep">
+    <p><strong>Immer mehr Menschen</strong> berichten über rätselhafte Symptome: Müdigkeit, Hautausschläge, Kopfschmerzen.
+    <em>Fachleute vermuten</em>, dass unsichtbare Bakterien im Körper verantwortlich sein könnten. Sie sollen sich im Gewebe ausbreiten und schwer behandelbare Entzündungen auslösen.</p>
+    <p>„Wir sehen derzeit ungewöhnlich viele Fälle, deren Ursache wir uns nicht erklären können“, sagt <strong>Dr. Lisa Brenner</strong>, Internistin aus Hamburg. „Viele Patienten wissen gar nicht, was mit ihnen geschieht.“</p>
+    <p><em>Anonyme Quellen</em> behaupten, die Regierung sei seit Monaten informiert, habe aber noch keine Maßnahmen ergriffen. In sozialen Netzwerken mehren sich Forderungen nach mehr Aufklärung. Eltern verlangen, dass Schulen auf mögliche Risiken hinweisen.</p>
+    <p>Apotheken berichten von mehr Menschen, die sich <strong>selbst</strong> mit Hausmitteln oder Nahrungsergänzung „schützen“ wollen. <span class="label">Offizielle Stellen raten bisher zu „Ruhe und Hygiene“.</span></p>
+  </article>
+`;
+
+/* Gruppe 4 – neue, sehr glaubwürdig klingende Fake-Nachricht (ähnliche Länge) */
+const ARTICLE_G4 = `
+  <article class="card" aria-labelledby="g4h">
+    <h2 id="g4h">📰 Neue „Kupferflaschen“-Empfehlung soll Keime im Trinkwasser stoppen</h2>
+    <p class="label">Lest den Text. Prüft ihn mit der Checkliste. Notiert Belege & offene Fragen.</p>
+    <hr class="sep">
+    <p>Mehrere Blogs berichten, eine interne Empfehlung rate Schulen und Familien zu <em>Kupfer-Trinkflaschen</em>. Das Metall setze winzige Teilchen frei, die bis zu „99&nbsp;% der Bakterien“ im Wasser abtöten sollen – ganz ohne Chemie.</p>
+    <p>In Foren schreiben Eltern, seit dem Umstieg seien Erkältungen seltener geworden. Ein „Expertenkreis Trinkhygiene“ spreche von einer „einfachen, natürlichen Lösung“. Offizielle Stellen prüfen demnach eine landesweite Empfehlung. Konkrete Daten oder Vergleichsstudien wurden bislang nicht veröffentlicht.</p>
+  </article>
+`;
+
+/* ---------- Gruppenobjekte: identischer Aufbau, individueller Artikel ---------- */
 const GROUPS = {
-  g1: {
-    title:"Gruppe 1 – Gesellschaft",
-    lead:"Aufgabe: Lest eure Nachricht und prüft sie mit der Checkliste. Ziel: Folgen von Fehlinformationen für Vertrauen und Zusammenhalt erkennen.",
-    material:`
-      <ul>
-        <li>Widersprüchliche Infos erzeugen Unsicherheit – wem glaubt man noch?</li>
-        <li>Starke Emotionen (Wut/Angst) → schnelle Urteile, starke Lagerbildung.</li>
-        <li>Falschmeldungen können Gruppen verzerrt darstellen und Konflikte schüren.</li>
-        <li>Fragt euch: Wer gewinnt durch die Nachricht? Wer verliert?</li>
-      </ul>
-    `
-  },
-
-  g2: {
-    title:"Gruppe 2 – Politik",
-    lead:"Aufgabe: Lest eure Nachricht und prüft sie mit der Checkliste. Ziel: Wirkung von Fehlinformationen auf politische Entscheidungen verstehen.",
-    material:`
-      <ul>
-        <li>Falsche Infos zu Gesetzen/Wahlen → falsche Entscheidungen.</li>
-        <li>„Niemand sagt die Wahrheit“ schwächt Vertrauen in Institutionen.</li>
-        <li>Empörung verbreitet sich schneller als nüchterne Fakten.</li>
-        <li>Prüft: Wer ist Absender? Gibt es offizielle Korrekturen/Statements?</li>
-      </ul>
-    `
-  },
-
-  g3: {
-    title:"Gruppe 3 – Gesundheit",
-    lead:"Aufgabe: Lest die Nachricht (Box 1) und prüft sie systematisch mit der Checkliste (Box 2). Ziel: Risiken von Gesundheits-Fakes erkennen.",
-    material:`
-      <div class="grid cols-2">
-
-        <!-- Box 1: Nachricht / Artikel -->
-        <article class="card" aria-labelledby="a1h">
-          <h2 id="a1h">📰 Gefährliche Bakterien breiten sich unbemerkt aus</h2>
-          <p class="label">Lest den Text. Prüft ihn mit der Checkliste. Notiert Belege & offene Fragen.</p>
-          <hr class="sep">
-
-          <p><strong>Immer mehr Menschen</strong> berichten über rätselhafte Symptome: Müdigkeit, Hautausschläge, Kopfschmerzen.
-          <em>Fachleute vermuten</em>, dass unsichtbare Bakterien im Körper verantwortlich sein könnten. Sie sollen sich im Gewebe ausbreiten und schwer behandelbare Entzündungen auslösen.</p>
-
-          <p>„Wir sehen derzeit ungewöhnlich viele Fälle, deren Ursache wir uns nicht erklären können“, sagt <strong>Dr. Lisa Brenner</strong>, Internistin aus Hamburg.
-          „Viele Patienten wissen gar nicht, was mit ihnen geschieht.“</p>
-
-          <p><em>Anonyme Quellen</em> behaupten, die Regierung sei seit Monaten informiert, habe aber noch keine Maßnahmen ergriffen.
-          In sozialen Netzwerken mehren sich Forderungen nach mehr Aufklärung. Eltern verlangen, dass Schulen auf mögliche Risiken hinweisen.</p>
-
-          <p>Apotheken berichten von mehr Menschen, die sich <strong>selbst</strong> mit Hausmitteln oder Nahrungsergänzung „schützen“ wollen.
-          <span class="label">Offizielle Stellen raten bisher zu „Ruhe und Hygiene“.</span></p>
-        </article>
-
-        <!-- Box 2: Checkliste / Prüffragen -->
-        <aside class="card" aria-labelledby="a2h">
-          <h2 id="a2h">✅ Checkliste – So prüft ihr die Nachricht</h2>
-          <ol>
-            <li><strong>Wer spricht?</strong> Gibt es Namen/Redaktion? Was bleibt anonym?</li>
-            <li><strong>Datum & Ort:</strong> Wann wurde das gesagt/geschrieben? Wo spielt das?</li>
-            <li><strong>Belege:</strong> Zahlen, Studien, Links, Bildquelle – vorhanden oder nur Behauptungen?</li>
-            <li><strong>Mehrere Quellen:</strong> Bestätigen unabhängige Seiten dieselbe Aussage?</li>
-            <li><strong>Sprache & Gefühl:</strong> Macht der Text Angst/Druck? Viele Wertungen oder neutrale Infos?</li>
-            <li><strong>Fazit:</strong> Glaubwürdig / Unsicher / Vorsicht – mit 1–2 Sätzen begründen.</li>
-          </ol>
-
-          <div class="notice">
-            Tipp: Notiert konkrete Zitate (Name, Satz, Zahl, Datum) als Belege. Markiert Stellen, die ihr gegenprüfen wollt.
-          </div>
-        </aside>
-
-      </div>
-    `
-  },
-
-  g4: {
-    title:"Gruppe 4 – Umwelt",
-    lead:"Aufgabe: Lest eure Nachricht und prüft sie mit der Checkliste. Ziel: Desinformation zu Klima/Natur erkennen.",
-    material:`
-      <ul>
-        <li>Übertreibung vs. Verharmlosung: Beides kann in die Irre führen.</li>
-        <li>Einzelbilder/Einzelfälle sind nicht die ganze Lage – Kontext checken.</li>
-        <li>Diagramme/Skalen: Achsen, Zeiträume, Quellenangaben prüfen.</li>
-        <li>Fragt: Handelt es sich um Meinung, Werbung oder Bericht?</li>
-      </ul>
-    `
-  }
+  g1: { title:"Gruppe 1 – Gesellschaft", lead: UNIFIED_LEAD, material: buildGrid(ARTICLE_G1) },
+  g2: { title:"Gruppe 2 – Politik",     lead: UNIFIED_LEAD, material: buildGrid(ARTICLE_G2) },
+  g3: { title:"Gruppe 3 – Gesundheit",  lead: UNIFIED_LEAD, material: buildGrid(ARTICLE_G3) },
+  g4: { title:"Gruppe 4 – Umwelt",      lead: UNIFIED_LEAD, material: buildGrid(ARTICLE_G4) },
 };
 
+/* Routing/Anzeige */
 function show(id){
   ["view-home","view-work"].forEach(v=>document.getElementById(v).classList.add("hidden"));
   document.getElementById(id).classList.remove("hidden");
@@ -204,5 +205,6 @@ function openGroup(gid){
   show("view-work");
 }
 </script>
+
 </body>
 </html>
