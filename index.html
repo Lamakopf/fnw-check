@@ -138,49 +138,76 @@ function buildGrid(articleHTML) {
 
 /* Gruppe 1 – neutral/richtig */
 const ARTICLE_G1 = `
-  <article class="card" aria-labelledby="g1h">
-    <h2 id="g1h">📰 Bakterien helfen beim Verdauen</h2>
-    <p class="label">Lest den Text. Prüft ihn mit der Checkliste. Notiert Belege & offene Fragen.</p>
-    <hr class="sep">
-    <p>Im menschlichen Darm leben viele kleine Lebewesen – sogenannte Bakterien. Die meisten davon sind nützlich. Sie helfen, dass Nahrung besser verdaut wird und der Körper wichtige Stoffe aufnehmen kann.</p>
-    <p>Manche Bakterien schützen uns sogar vor Krankheiten. Andere können aber auch schaden, wenn sie an die falsche Stelle gelangen. Forschende wollen noch genauer herausfinden, wie die Bakterien zusammenarbeiten.</p>
-  </article>
+<article class="card" aria-labelledby="g1h">
+  <h2 id="g1h">📰 Bakterien helfen beim Verdauen – Warum unser Darm so wichtig ist</h2>
+  <p class="label">Von Redaktion WissenAktuell | 12. April 2025 | Quelle: Deutsches Gesundheitsportal</p>
+  <hr class="sep">
+
+  <p>Im menschlichen Darm leben mehrere Billionen winziger Lebewesen – sogenannte Darmbakterien. Forschende der Universität Freiburg haben in einer neuen Studie bestätigt, dass diese Bakterien beim Verdauen eine entscheidende Rolle spielen. Sie helfen dabei, Nahrung zu zersetzen und wichtige Vitamine herzustellen, die der Körper sonst nicht bilden könnte.</p>
+
+  <p>„Unsere Ergebnisse zeigen, dass eine ausgewogene Ernährung die Vielfalt der Bakterien stärkt“, sagt <strong>Dr. Claudia Reinhardt</strong>, Ernährungswissenschaftlerin und Mitautorin der Studie. Die Untersuchung wurde mit über 1 000 Teilnehmenden durchgeführt und im Fachjournal <em>Nature Microbiology</em> veröffentlicht.</p>
+
+  <p>Manche Bakterien können jedoch auch Schaden anrichten, wenn sie an falsche Orte im Körper gelangen. Ärztinnen empfehlen deshalb, Antibiotika nur dann einzunehmen, wenn sie wirklich nötig sind, damit die nützlichen Darmbakterien nicht zerstört werden.</p>
+
+  <p><strong>Fazit:</strong> Der Artikel nennt Quellen, Forschende und eine Studie – er wirkt sachlich und überprüfbar.</p>
+</article>
+
 `;
 
 /* Gruppe 2 – Fake (positiv, „Superbakterien“) */
 const ARTICLE_G2 = `
-  <article class="card" aria-labelledby="g2h">
-    <h2 id="g2h">📰 „Superbakterien“ sollen Muskeln aufbauen und seltener krank machen</h2>
-    <p class="label">Lest den Text. Prüft ihn mit der Checkliste. Notiert Belege & offene Fragen.</p>
-    <hr class="sep">
-    <p>Forscherinnen und Forscher haben eine neue Art von Bakterien im menschlichen Körper gefunden. Diese „Superbakterien“ sollen helfen, dass wir seltener krank werden und sogar schneller Muskeln aufbauen können.</p>
-    <p>„Das könnte eine Revolution für unsere Gesundheit sein“, sagt <strong>Dr. Karl Sommer</strong> vom Gesundheitszentrum Süd. In ersten Versuchen hätten die Bakterien erstaunliche Ergebnisse gezeigt. Das Ministerium prüft nun, ob alle Menschen diese nützlichen Bakterien als Tablette bekommen können. „Damit werden wir gesünder als je zuvor“, heißt es in der Mitteilung.</p>
-  </article>
+<article class="card" aria-labelledby="g2h">
+  <h2 id="g2h">📰 „Superbakterien“ machen uns stärker – Regierung plant Gesundheits-Offensive</h2>
+  <p class="label">Von Karl Sommer | Gesund & Frei Online | veröffentlicht am 10. April 2025</p>
+  <hr class="sep">
+
+  <p>Laut eines „internen Berichts“ des Gesundheitsministeriums sollen neu entdeckte <strong>„Superbakterien“</strong> den menschlichen Körper gesünder und leistungsfähiger machen. Mehrere „anonyme Forscher“ hätten in geheimen Laboren beobachtet, dass diese Mikroorganismen Krankheiten verhindern und sogar Muskeln wachsen lassen können.</p>
+
+  <p>„Das könnte die Medizin revolutionieren“, erklärt <strong>Dr. Karl Sommer</strong> vom „Gesundheitszentrum Süd“. Welche Untersuchungen das bestätigen, wird nicht gesagt. Auch die angeblich spektakulären „Ergebnisse“ sind bisher nicht in Fachzeitschriften erschienen. Dennoch heißt es, das Ministerium prüfe, ob die neuen Bakterien schon bald als Tablette verteilt werden könnten.</p>
+
+  <p>Eine genaue Quelle der Daten fehlt, ebenso Angaben, wann und wo die Experimente durchgeführt wurden. Der Artikel endet mit den Worten: „Deutschland steht vor einem neuen Zeitalter der Gesundheit“ – eine Formulierung, die stark werbend klingt.</p>
+
+  <p><strong>Fazit:</strong> Der Text nutzt große Versprechen, aber keine überprüfbaren Belege. Namen und Studien bleiben unklar – Vorsicht!</p>
+</article>
+
 `;
 
 /* Gruppe 3 – Fake (nüchtern-emotional, glaubwürdig klingend) – hattest du schon; hier unverändert */
 const ARTICLE_G3 = `
-  <article class="card" aria-labelledby="g3h">
-    <h2 id="g3h">📰 Gefährliche Bakterien breiten sich unbemerkt aus</h2>
-    <p class="label">Lest den Text. Prüft ihn mit der Checkliste. Notiert Belege & offene Fragen.</p>
-    <hr class="sep">
-    <p><strong>Immer mehr Menschen</strong> berichten über rätselhafte Symptome: Müdigkeit, Hautausschläge, Kopfschmerzen.
-    <em>Fachleute vermuten</em>, dass unsichtbare Bakterien im Körper verantwortlich sein könnten. Sie sollen sich im Gewebe ausbreiten und schwer behandelbare Entzündungen auslösen.</p>
-    <p>„Wir sehen derzeit ungewöhnlich viele Fälle, deren Ursache wir uns nicht erklären können“, sagt <strong>Dr. Lisa Brenner</strong>, Internistin aus Hamburg. „Viele Patienten wissen gar nicht, was mit ihnen geschieht.“</p>
-    <p><em>Anonyme Quellen</em> behaupten, die Regierung sei seit Monaten informiert, habe aber noch keine Maßnahmen ergriffen. In sozialen Netzwerken mehren sich Forderungen nach mehr Aufklärung. Eltern verlangen, dass Schulen auf mögliche Risiken hinweisen.</p>
-    <p>Apotheken berichten von mehr Menschen, die sich <strong>selbst</strong> mit Hausmitteln oder Nahrungsergänzung „schützen“ wollen. <span class="label">Offizielle Stellen raten bisher zu „Ruhe und Hygiene“.</span></p>
-  </article>
+<article class="card" aria-labelledby="g3h">
+  <h2 id="g3h">📰 Gefährliche Bakterien breiten sich unbemerkt aus – Regierung reagiert nicht</h2>
+  <p class="label">Von Lisa Berger | Gesundheitsreport24.de | 8. April 2025 | Ort: Hamburg</p>
+  <hr class="sep">
+
+  <p><strong>Immer mehr Menschen</strong> berichten über rätselhafte Beschwerden: Müdigkeit, Hautausschläge, Kopfschmerzen. Laut einer angeblichen „neuen Studie aus Skandinavien“ könnten gefährliche Bakterien dahinterstecken, die sich im Körper unbemerkt vermehren. Belege oder Studienangaben werden im Text nicht genannt.</p>
+
+  <p>„Wir sehen täglich neue Fälle, deren Ursache wir uns nicht erklären können“, warnt <strong>Dr. Lisa Brenner</strong>, Internistin aus Hamburg. Eine genaue Praxisadresse oder Institution wird jedoch nicht angegeben. In sozialen Netzwerken kursieren Bilder angeblicher Patienten – eine Quellenangabe fehlt.</p>
+
+  <p>Mehrere anonyme Informanten behaupten, die Regierung sei „seit Monaten informiert“, wolle aber Panik vermeiden. Gleichzeitig empfehlen Blogger, mit Hausmitteln und Nahrungsergänzung „das Immunsystem zu schützen“. Offizielle Stellen äußerten sich bisher nicht.</p>
+
+  <p>Der Artikel enthält keine überprüfbaren Daten, nutzt aber emotionale Sprache: „unbemerkt“, „gefährlich“, „Regierung reagiert nicht“. Dadurch wirkt er alarmierend, aber nicht belegt.</p>
+
+  <p><strong>Fazit:</strong> Der Text arbeitet mit Angst und anonymen Quellen. Keine Belege, keine unabhängigen Nachweise – zweifelhaft!</p>
+</article>
+
 `;
 
 /* Gruppe 4 – neue, sehr glaubwürdig klingende Fake-Nachricht (ähnliche Länge) */
 const ARTICLE_G4 = `
-  <article class="card" aria-labelledby="g4h">
-    <h2 id="g4h">📰 Neue „Kupferflaschen“-Empfehlung soll Keime im Trinkwasser stoppen</h2>
-    <p class="label">Lest den Text. Prüft ihn mit der Checkliste. Notiert Belege & offene Fragen.</p>
-    <hr class="sep">
-    <p>Mehrere Blogs berichten, eine interne Empfehlung rate Schulen und Familien zu <em>Kupfer-Trinkflaschen</em>. Das Metall setze winzige Teilchen frei, die bis zu „99&nbsp;% der Bakterien“ im Wasser abtöten sollen – ganz ohne Chemie.</p>
-    <p>In Foren schreiben Eltern, seit dem Umstieg seien Erkältungen seltener geworden. Ein „Expertenkreis Trinkhygiene“ spreche von einer „einfachen, natürlichen Lösung“. Offizielle Stellen prüfen demnach eine landesweite Empfehlung. Konkrete Daten oder Vergleichsstudien wurden bislang nicht veröffentlicht.</p>
-  </article>
+<article class="card" aria-labelledby="g4h">
+  <h2 id="g4h">📰 Kupferflaschen schützen angeblich vor Keimen im Leitungswasser</h2>
+  <p class="label">Von Redaktion „Natürlich Leben“ | 9. April 2025 | Quelle: gesund-trinken.info</p>
+  <hr class="sep">
+
+  <p>Ein neuer „Bericht“ behauptet, Kupferflaschen könnten bis zu <strong>99 % der Bakterien im Trinkwasser</strong> abtöten – und zwar ganz ohne Chemikalien. Auf mehreren Blogs und in Messenger-Gruppen wird diese Behauptung derzeit tausendfach geteilt. Eine wissenschaftliche Quelle wird nicht genannt, lediglich „ein Expertenkreis Trinkhygiene“ soll die Wirkung bestätigt haben.</p>
+
+  <p>„Wir haben seit Monaten keine Erkältungen mehr“, berichtet eine Nutzerin namens <em>Andrea M.</em> in einem Facebook-Post, der über 5 000 Likes erhielt. Eine Verbindung zwischen der Flasche und der Gesundheit wird aber nicht belegt. Auch das Umweltbundesamt hat bislang keine Empfehlung dazu ausgesprochen.</p>
+
+  <p>Der Artikel enthält viele positive Wertungen („natürlich“, „revolutionär“, „einfach“) und verweist auf einen Onlineshop, der die Flaschen verkauft. Ort, Zeit und Autorenschaft des angeblichen „Berichts“ bleiben unklar. Die Mischung aus Erfahrungsberichten, Werbung und fehlenden Belegen ist typisch für Desinformation.</p>
+
+  <p><strong>Fazit:</strong> Der Text klingt harmlos und wissenschaftlich, verschweigt aber Quellen. Werbung wird als Information dargestellt – kritisch prüfen!</p>
+</article>
+
 `;
 
 /* ---------- Gruppenobjekte: identischer Aufbau, individueller Artikel ---------- */
