@@ -1,65 +1,151 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Workshop: Fake News prüfen (Gruppenarbeit)</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Workshop: Fake News prüfen (Unterstufe – Gruppenarbeit)</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
-:root { --bg:#fff; --ink:#111; --muted:#555; --line:#e5e8ee; --brand:#0b72ff; --card:#f8f9fc; }
-body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink);line-height:1.6;}
-main{max-width:1100px;margin:32px auto;padding:0 16px;}
-h1{font-size:clamp(22px,2.6vw,28px);}
-h2{margin-top:1rem;}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:16px;}
-.grid{display:grid;gap:12px;}
-.grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr));}
-@media(max-width:880px){.grid.cols-2{grid-template-columns:1fr;}}
-.btn{background:var(--brand);color:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer;}
-.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);}
-.hidden{display:none;}
-.help details{border:1px solid var(--line);border-radius:12px;background:#fff;}
-.help summary{cursor:pointer;list-style:none;padding:10px;font-weight:600;}
-.help .content{padding:0 12px 10px;}
-.input{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;}
-.label{font-size:.9rem;color:var(--muted);}
-.notice{background:#fff7e6;border:1px solid #ffe4b5;padding:10px;border-radius:10px;margin-top:10px;}
-.small{font-size:.95rem;}
-hr.sep{border:none;border-top:1px solid var(--line);margin:8px 0 12px}
+:root{
+  --bg:#ffffff; --ink:#111; --muted:#555; --line:#e6e9f0;
+  --brand:#0b72ff; --card:#f7f9ff; --good:#13a463; --warn:#f2b400; --bad:#e33939;
+  --shadow:0 10px 26px rgba(0,0,0,.10);
+}
+
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink);line-height:1.55}
+main{max-width:1120px;margin:28px auto;padding:0 16px}
+h1{font-size:clamp(22px,2.6vw,30px);margin:0 0 8px}
+h2{margin:.2rem 0 .6rem;font-size:1.05rem}
+p{margin:.35rem 0}
+.lead{font-size:1.03rem;color:var(--ink)}
+.small{font-size:.95rem;color:var(--muted)}
+.label{font-size:.9rem;color:var(--muted)}
+hr.sep{border:none;border-top:1px solid var(--line);margin:10px 0 12px}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+  box-shadow:var(--shadow);
+  margin-bottom:14px;
+}
+
+.grid{display:grid;gap:12px}
+.grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:900px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr}}
+
+.btn{
+  background:var(--brand);color:#fff;border:0;padding:11px 14px;border-radius:12px;
+  font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);font-weight:700}
+.btn.small{padding:9px 12px;border-radius:11px;font-weight:700}
+.hidden{display:none}
+
+.pillRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.pill{
+  border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 10px;
+  font-weight:700;cursor:pointer;user-select:none
+}
+.pill[aria-pressed="true"]{outline:3px solid rgba(11,114,255,.22);border-color:#b9d3ff}
+
+.notice{
+  background:#fff7e6;border:1px solid #ffe1b0;padding:10px;border-radius:12px;margin-top:10px
+}
+
+.kit{
+  border:1px dashed #bcd3ff;background:#fff;border-radius:14px;padding:12px
+}
+
+.bigInput{
+  width:100%;min-height:96px;resize:vertical;
+  border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;background:#fff;
+}
+
+.check{
+  display:grid;gap:10px;margin-top:10px
+}
+.check label{
+  display:flex;gap:10px;align-items:flex-start;
+  border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px
+}
+.check input{transform:scale(1.2);margin-top:2px}
+
+.ampelRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.ampel{
+  border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;
+  font-weight:800;cursor:pointer;display:flex;align-items:center;gap:10px
+}
+.ampel.good{border-color:rgba(19,164,99,.35)}
+.ampel.warn{border-color:rgba(242,180,0,.35)}
+.ampel.bad{border-color:rgba(227,57,57,.35)}
+.ampel[aria-pressed="true"]{outline:3px solid rgba(0,0,0,.10)}
+
+.scoreBox{
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center
+}
+.badge{
+  background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 10px;font-weight:800
+}
+
+footer.tools{
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0 24px
+}
+
+details{border:1px solid var(--line);border-radius:14px;background:#fff}
+summary{cursor:pointer;list-style:none;padding:10px 12px;font-weight:800}
+details .content{padding:0 12px 12px}
+
+a{color:var(--brand);font-weight:700;text-decoration:none}
+a:hover{text-decoration:underline}
 </style>
 </head>
+
 <body>
 <main>
 
-<!-- ================= START ================= -->
+<!-- ================= HOME ================= -->
 <section id="view-home">
-  <h1>Fake News prüfen – Gruppenarbeit</h1>
+  <h1>Fake News prüfen – Gruppenarbeit (Unterstufe)</h1>
   <p class="lead">
-    Ziel: <strong>Kurze Nachrichten lesen und prüfen.</strong> Jede Gruppe bekommt von der Lehrkraft eine <strong>Gruppennummer</strong> (1–4) und öffnet unten ihr Thema.
+    Ihr bekommt eine <strong>Gruppennummer (1–4)</strong>. Öffnet eure Gruppe und arbeitet zusammen.
   </p>
+
+  <div class="card">
+    <h2>So läuft es (kurz)</h2>
+    <p class="small"><strong>1)</strong> Lest die Nachricht. <strong>2)</strong> Hakt die Checkliste ab. <strong>3)</strong> Schreibt Belege & Fragen. <strong>4)</strong> Wählt die Ampel.</p>
+    <div class="notice small">
+      Tipp: Wenn etwas <strong>sehr aufgeregt</strong> klingt oder <strong>keine Quelle</strong> nennt, dann ist Vorsicht gut.
+    </div>
+  </div>
 
   <div class="grid cols-2">
     <div class="card">
       <h2>👥 Gesellschaft (Gruppe 1)</h2>
-      <p class="small">Wie verändern Falschmeldungen Vertrauen und Zusammenhalt?</p>
+      <p class="small">Gerüchte, Influencer, „Alle sagen das…“</p>
       <button class="btn" onclick="openGroup('g1')">Gruppe 1 öffnen</button>
     </div>
 
     <div class="card">
       <h2>🏛 Politik (Gruppe 2)</h2>
-      <p class="small">Welche Folgen haben Fehlinformationen für politische Entscheidungen?</p>
+      <p class="small">Wahlen, Regeln, Zitate, Entscheidungen</p>
       <button class="btn" onclick="openGroup('g2')">Gruppe 2 öffnen</button>
     </div>
 
     <div class="card">
       <h2>⚕ Gesundheit (Gruppe 3)</h2>
-      <p class="small">Welche Risiken entstehen durch Falschmeldungen zu Medizin/Krankheit?</p>
+      <p class="small">„Wunder“-Tipps, Hausmittel, Angst-Posts</p>
       <button class="btn" onclick="openGroup('g3')">Gruppe 3 öffnen</button>
     </div>
 
     <div class="card">
       <h2>🌍 Umwelt (Gruppe 4)</h2>
-      <p class="small">Wie beeinflussen Desinformationen den Blick auf Klima und Natur?</p>
+      <p class="small">Klima, Tiere, „Studien“, Zahlen</p>
       <button class="btn" onclick="openGroup('g4')">Gruppe 4 öffnen</button>
     </div>
   </div>
@@ -71,32 +157,87 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:8px 0 12px}
   <h1 id="groupTitle"></h1>
   <p id="groupLead" class="lead"></p>
 
-  <div class="card">
-    <h2>🧭 Arbeitsauftrag</h2>
-    <ol>
-      <li>Lesen Sie die <strong>kurze Nachricht</strong> Ihrer Gruppe aufmerksam.</li>
-      <li>Prüfen Sie die Nachricht mit der <strong>Checkliste</strong> in Box&nbsp;2.</li>
-      <li>Notieren Sie <strong>Belege</strong> (Namen, Datum, Daten/Links) und <strong>offene Fragen</strong>.</li>
-      <li>Formulieren Sie ein <strong>Fazit</strong>: „Glaubwürdig / Unsicher / Vorsicht“ – mit kurzer Begründung.</li>
-    </ol>
+  <div class="grid cols-2">
+    <!-- LEFT: Nachricht -->
+    <div class="card" id="newsBox"></div>
+
+    <!-- RIGHT: Check + Notizen -->
+    <div class="card">
+      <div class="scoreBox">
+        <h2 style="margin:0">✅ Checkliste</h2>
+        <div class="badge" id="hintBadge">Hinweis: arbeite genau</div>
+      </div>
+
+      <p class="small">Hakt an, was <strong>fehlt</strong> oder <strong>komisch</strong> ist.</p>
+
+      <div class="check" id="checklistBox"></div>
+
+      <hr class="sep">
+
+      <h2>🧾 Belege (was ist sicher?)</h2>
+      <p class="small">Schreibt Namen, Datum, Ort, Links, Zahlen – oder: „fehlt“.</p>
+      <textarea class="bigInput" id="evidence" placeholder="Belege: ... (z.B. Name fehlt / Datum unklar / Link fehlt)"></textarea>
+
+      <hr class="sep">
+
+      <h2>❓ Offene Fragen (was wollt ihr nachschauen?)</h2>
+      <textarea class="bigInput" id="questions" placeholder="Fragen: ... (z.B. Gibt es diese Person wirklich? Gibt es die Studie?)"></textarea>
+
+      <hr class="sep">
+
+      <h2>🚦 Ampel-Fazit</h2>
+      <p class="small">Wählt genau <strong>eine</strong> Ampel und schreibt 1–2 Sätze.</p>
+
+      <div class="ampelRow">
+        <button class="ampel good" aria-pressed="false" onclick="setAmpel('good')">🟢 eher glaubwürdig</button>
+        <button class="ampel warn" aria-pressed="false" onclick="setAmpel('warn')">🟡 unsicher</button>
+        <button class="ampel bad"  aria-pressed="false" onclick="setAmpel('bad')">🔴 Vorsicht!</button>
+      </div>
+
+      <textarea class="bigInput" id="fazit" placeholder="Begründung (1–2 Sätze): ..."></textarea>
+
+      <footer class="tools">
+        <button class="btn small" onclick="copyResult()">📋 Ergebnis kopieren</button>
+        <button class="btn small ghost" onclick="resetWork()">↺ Zurücksetzen</button>
+        <button class="btn small ghost" onclick="window.print()">🖨️ Drucken</button>
+      </footer>
+
+      <details>
+        <summary>🧑‍🏫 Lehrkraft: Lösung anzeigen</summary>
+        <div class="content small">
+          <p><strong>Hinweis:</strong> Diese Texte sind Übungsnachrichten. Manche sind absichtlich fragwürdig.</p>
+          <p id="teacherSolution" class="kit"></p>
+        </div>
+      </details>
+
+      <div class="card" style="margin:12px 0 0;background:#fff">
+        <h2 style="margin:.2rem 0 .4rem">📝 Links zu euren Arbeitsdokumenten</h2>
+        <div class="small">
+          <p>Gruppe 1: <a href="https://cryptpad.fr/pad/#/2/pad/edit/VPzZgMBcAf57cmIYcNsmfros/" target="_blank" rel="noopener">CryptPad öffnen</a></p>
+          <p>Gruppe 2: <a href="https://cryptpad.fr/pad/#/2/pad/edit/NEQc5uNvEbNb7aOmFXjP5r7C/" target="_blank" rel="noopener">CryptPad öffnen</a></p>
+          <p>Gruppe 3: <a href="https://cryptpad.fr/pad/#/2/pad/edit/zojh4YNoAsntQ2dL35-sc9EO/" target="_blank" rel="noopener">CryptPad öffnen</a></p>
+          <p>Gruppe 4: <a href="https://cryptpad.fr/pad/#/2/pad/edit/2Whr8U5INFVZRq+Xlpt4vuG3/" target="_blank" rel="noopener">CryptPad öffnen</a></p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="help card">
-    <details open>
-      <summary>🧰 Material Ihrer Gruppe</summary>
-      <div class="content" id="materialBox"></div>
-    </details>
-  </div>
-
   <div class="card">
-    <h2>📝 Links zu den Arbeitsdokumenten</h2>
-    <div class="label">
-      <ul>
-        <li>Gruppe 1 (Gesellschaft): <a href="https://cryptpad.fr/pad/#/2/pad/edit/VPzZgMBcAf57cmIYcNsmfros/">Link</a></li>
-        <li>Gruppe 3 (Gesundheit): <a href="https://cryptpad.fr/pad/#/2/pad/edit/zojh4YNoAsntQ2dL35-sc9EO/">Link</a></li>
-        <li>Gruppe 2 (Politik): <a href="https://cryptpad.fr/pad/#/2/pad/edit/NEQc5uNvEbNb7aOmFXjP5r7C/">Link</a></li>
-        <li>Gruppe 4 (Umwelt): <a href="https://cryptpad.fr/pad/#/2/pad/edit/2Whr8U5INFVZRq+Xlpt4vuG3/">Link</a></li>
-      </ul>
+    <h2>👥 Mini-Rollen (optional, hilft bei der Gruppenarbeit)</h2>
+    <p class="small">Wählt Rollen, damit alle etwas tun. Ihr könnt auch ohne Rollen arbeiten.</p>
+    <div class="grid cols-3">
+      <div class="kit">
+        <p><strong>1) Vorleser:in</strong></p>
+        <p class="small">Liest die Nachricht laut und langsam.</p>
+      </div>
+      <div class="kit">
+        <p><strong>2) Fakten-Checker:in</strong></p>
+        <p class="small">Sucht nach Datum, Ort, Quellen, Namen.</p>
+      </div>
+      <div class="kit">
+        <p><strong>3) Protokoll</strong></p>
+        <p class="small">Schreibt Belege, Fragen und das Fazit.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -104,132 +245,220 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:8px 0 12px}
 </main>
 
 <script>
-/* Einheitlicher Lead-Text für alle Gruppen */
+/* ===== Text für Unterstufe (Du-Form, kurz) ===== */
 const UNIFIED_LEAD =
-  "Aufgabe: Lest die Nachricht (Box 1) und prüft sie mit der Checkliste (Box 2). Ziel: Fake News erkennen und begründet bewerten.";
+  "Aufgabe: Lest die Nachricht. Prüft sie mit der Checkliste. Schreibt Belege und Fragen. Wählt am Ende die Ampel.";
 
-/* Einheitliche Checkliste (Box 2) */
-const CHECKLIST = `
-  <aside class="card" aria-labelledby="a2h">
-    <h2 id="a2h">✅ Checkliste – So prüft ihr die Nachricht</h2>
-    <ol>
-      <li><strong>Wer spricht?</strong> Gibt es Namen/Redaktion? Was bleibt anonym?</li>
-      <li><strong>Datum & Ort:</strong> Wann wurde das gesagt/geschrieben? Wo spielt das?</li>
-      <li><strong>Belege:</strong> Zahlen, Studien, Links, Bildquelle – vorhanden oder nur Behauptungen?</li>
-      <li><strong>Mehrere Quellen:</strong> Bestätigen unabhängige Seiten dieselbe Aussage?</li>
-      <li><strong>Sprache & Gefühl:</strong> Macht der Text Angst/Druck? Viele Wertungen oder neutrale Infos?</li>
-      <li><strong>Fazit:</strong> Glaubwürdig / Unsicher / Vorsicht – mit 1–2 Sätzen begründen.</li>
-    </ol>
-    <div class="notice">Tipp: Notiert konkrete Zitate (Name, Satz, Zahl, Datum) als Belege. Markiert Stellen, die ihr gegenprüfen wollt.</div>
-  </aside>
-`;
+/* ===== Checkliste (kurz, klar) ===== */
+const CHECK_ITEMS = [
+  "👤 Wer hat das geschrieben? Gibt es eine echte Person oder Redaktion?",
+  "📅 Gibt es ein Datum und einen Ort? Oder bleibt das unklar?",
+  "🔗 Gibt es Belege? (Link, Studie, Bildquelle, Zahlen) Oder nur Behauptungen?",
+  "🧩 Klingt es sehr übertrieben? (\"Schock!\", \"100% sicher\", \"alle müssen...\")",
+  "🧠 Passt es logisch? Oder fehlen wichtige Infos?",
+  "🌐 Könnte man es auf anderen seriösen Seiten finden? (z.B. Tagesschau, ZDF, BR, UBA, RKI)"
+];
 
-/* Hilfsfunktion: baut das 2-Spalten-Grid */
-function buildGrid(articleHTML) {
-  return `
-    <div class="grid cols-2">
-      ${articleHTML}
-      ${CHECKLIST}
-    </div>
-  `;
-}
-
-/* ---------- Artikeltexte (Box 1) ---------- */
-
-/* Gruppe 1 – neutral/richtig */
-const ARTICLE_G1 = `
-<article class="card" aria-labelledby="g1h">
-  <h2 id="g1h">📰 Neue Studie: Bakterien im Darm beeinflussen unsere Meinung</h2>
-  <p class="label">Von Redaktion WissenschaftPlus | 11. April 2025 | Quelle: forschung-aktuell.net</p>
-  <hr class="sep">
-
-  <p>Laut einer „neuen Untersuchung“ aus den USA sollen bestimmte Darmbakterien das menschliche Verhalten beeinflussen – sogar, wie Menschen über Politik denken. „Unsere Tests zeigen, dass Menschen mit einem bestimmten Bakterienmix ruhiger, positiver und vertrauensvoller reagieren“, heißt es in dem Bericht. Eine genaue Quelle oder Studiennummer wird nicht genannt.</p>
-
-  <p>Die angebliche Forschergruppe „BioConLab“ veröffentlichte die Ergebnisse in einem internen Bericht, der bisher nicht überprüft wurde. Es bleibt unklar, wer die Studie finanziert hat. Trotzdem zitieren mehrere Blogs die Aussage, Bakterien könnten helfen, Konflikte in der Gesellschaft zu verringern.</p>
-
-  <p>„Wir sollten unser Darmmilieu fördern, um besser zusammenzuleben“, schreibt die Autorin anonym im Artikel. Konkrete Daten oder eine Kontrollgruppe fehlen völlig. Auch Universitäten oder Fachzeitschriften äußerten sich bislang nicht.</p>
-
-  <p><strong>Fazit:</strong> Der Text nutzt wissenschaftliche Begriffe, aber keine überprüfbaren Belege. Autorin und Quelle bleiben unklar – mit Vorsicht zu genießen.</p>
-</article>
-`;
-
-/* Gruppe 2 – Fake (positiv, „Superbakterien“) */
-const ARTICLE_G2 = `
-<article class="card" aria-labelledby="g2h">
-  <h2 id="g2h">📰 „Superbakterien“ – Das Gesundheitswunder aus deutschem Labor</h2>
-  <p class="label">Von Karl Sommer | Magazin Gesund & Stark | 10. April 2025</p>
-  <hr class="sep">
-
-  <p>Deutsche Forscherinnen und Forscher sollen eine bahnbrechende Entdeckung gemacht haben: sogenannte <strong>„Superbakterien“</strong>, die das Immunsystem stärken und den Körper „auf natürliche Weise fit und krankheitsfrei“ halten. „Das ist ein Meilenstein für die Medizin“, erklärt <strong>Dr. Karl Sommer</strong>, Leiter des Instituts für Mikrobiologie Süd. Eine genaue Adresse oder Kontaktmöglichkeit des Instituts wird im Artikel nicht genannt.</p>
-
-  <p>In einer Pressemitteilung heißt es, erste Tests an Freiwilligen hätten „überraschend gute Ergebnisse“ gezeigt. Zahlen, Studien oder Quellen werden keine genannt. Laut Bericht prüft das Gesundheitsministerium bereits eine staatliche Förderung, um die Bakterien als Nahrungsergänzung auf den Markt zu bringen.</p>
-
-  <p>„Damit beginnt ein neues Zeitalter der Gesundheit“, schreibt die Redaktion. Wann die Tests stattfanden oder wer sie durchführte, bleibt offen. Der Text klingt werbend und enthält viele positive Bewertungen – typische Anzeichen für PR statt Journalismus.</p>
-
-  <p><strong>Fazit:</strong> Der Artikel wirkt begeistert, aber liefert keine Fakten. Fehlende Daten, unklare Quellen und ein werblicher Ton machen ihn unglaubwürdig.</p>
-</article>
-
-
-`;
-
-/* Gruppe 3 – Fake (nüchtern-emotional, glaubwürdig klingend) – hattest du schon; hier unverändert */
-const ARTICLE_G3 = `
-<article class="card" aria-labelledby="g3h">
-  <h2 id="g3h">📰 Gefährliche Bakterien breiten sich unbemerkt aus – Regierung reagiert nicht</h2>
-  <p class="label">Von Lisa Berger | Gesundheitsreport24.de | 8. April 2025 | Ort: Hamburg</p>
-  <hr class="sep">
-
-  <p><strong>Immer mehr Menschen</strong> berichten über rätselhafte Beschwerden: Müdigkeit, Hautausschläge, Kopfschmerzen. Laut einer angeblichen „neuen Studie aus Skandinavien“ könnten gefährliche Bakterien dahinterstecken, die sich im Körper unbemerkt vermehren. Belege oder Studienangaben werden im Text nicht genannt.</p>
-
-  <p>„Wir sehen täglich neue Fälle, deren Ursache wir uns nicht erklären können“, warnt <strong>Dr. Lisa Brenner</strong>, Internistin aus Hamburg. Eine genaue Praxisadresse oder Institution wird jedoch nicht angegeben. In sozialen Netzwerken kursieren Bilder angeblicher Patienten – eine Quellenangabe fehlt.</p>
-
-  <p>Mehrere anonyme Informanten behaupten, die Regierung sei „seit Monaten informiert“, wolle aber Panik vermeiden. Gleichzeitig empfehlen Blogger, mit Hausmitteln und Nahrungsergänzung „das Immunsystem zu schützen“. Offizielle Stellen äußerten sich bisher nicht.</p>
-
-  <p>Der Artikel enthält keine überprüfbaren Daten, nutzt aber emotionale Sprache: „unbemerkt“, „gefährlich“, „Regierung reagiert nicht“. Dadurch wirkt er alarmierend, aber nicht belegt.</p>
-
-  <p><strong>Fazit:</strong> Der Text arbeitet mit Angst und anonymen Quellen. Keine Belege, keine unabhängigen Nachweise – zweifelhaft!</p>
-</article>
-
-`;
-
-/* Gruppe 4 – neue, sehr glaubwürdig klingende Fake-Nachricht (ähnliche Länge) */
-const ARTICLE_G4 = `
-<article class="card" aria-labelledby="g4h">
-  <h2 id="g4h">📰 Kupferflaschen schützen angeblich vor Keimen im Leitungswasser</h2>
-  <p class="label">Von Redaktion „Natürlich Leben“ | 9. April 2025 | Quelle: gesund-trinken.info</p>
-  <hr class="sep">
-
-  <p>Ein neuer „Bericht“ behauptet, Kupferflaschen könnten bis zu <strong>99 % der Bakterien im Trinkwasser</strong> abtöten – und zwar ganz ohne Chemikalien. Auf mehreren Blogs und in Messenger-Gruppen wird diese Behauptung derzeit tausendfach geteilt. Eine wissenschaftliche Quelle wird nicht genannt, lediglich „ein Expertenkreis Trinkhygiene“ soll die Wirkung bestätigt haben.</p>
-
-  <p>„Wir haben seit Monaten keine Erkältungen mehr“, berichtet eine Nutzerin namens <em>Andrea M.</em> in einem Facebook-Post, der über 5 000 Likes erhielt. Eine Verbindung zwischen der Flasche und der Gesundheit wird aber nicht belegt. Auch das Umweltbundesamt hat bislang keine Empfehlung dazu ausgesprochen.</p>
-
-  <p>Der Artikel enthält viele positive Wertungen („natürlich“, „revolutionär“, „einfach“) und verweist auf einen Onlineshop, der die Flaschen verkauft. Ort, Zeit und Autorenschaft des angeblichen „Berichts“ bleiben unklar. Die Mischung aus Erfahrungsberichten, Werbung und fehlenden Belegen ist typisch für Desinformation.</p>
-
-  <p><strong>Fazit:</strong> Der Text klingt harmlos und wissenschaftlich, verschweigt aber Quellen. Werbung wird als Information dargestellt – kritisch prüfen!</p>
-</article>
-
-`;
-
-/* ---------- Gruppenobjekte: identischer Aufbau, individueller Artikel ---------- */
-const GROUPS = {
-  g1: { title:"Gruppe 1 – Gesellschaft", lead: UNIFIED_LEAD, material: buildGrid(ARTICLE_G1) },
-  g2: { title:"Gruppe 2 – Politik",     lead: UNIFIED_LEAD, material: buildGrid(ARTICLE_G2) },
-  g3: { title:"Gruppe 3 – Gesundheit",  lead: UNIFIED_LEAD, material: buildGrid(ARTICLE_G3) },
-  g4: { title:"Gruppe 4 – Umwelt",      lead: UNIFIED_LEAD, material: buildGrid(ARTICLE_G4) },
+/* ===== Übungsnachrichten (kurz, realistisch, Unterstufe) ===== */
+/* Gruppe 1 – Gesellschaft (fragwürdig, Gerücht/Influencer) */
+const ARTICLE_G1 = {
+  title: "📰 „Schul-Apps hören heimlich zu“ – Post geht viral",
+  meta: "Quelle: „TrendNews_Chat“ | 12. April 2025 | Autor: unbekannt",
+  body: `
+    In einer Messenger-Gruppe wird behauptet: „Schul-Apps hören im Unterricht mit und speichern Gespräche.“
+    Dazu wird ein Screenshot geteilt. Es ist aber nicht zu sehen, von welcher App er kommt.
+    Im Text steht nur: „Ein Insider hat es bestätigt.“
+    Es gibt keinen Link zu einer offiziellen Stelle und keine genaue App wird genannt.
+    Mehrere Kommentare schreiben: „Ich hab das auch gehört“ – aber ohne Belege.
+  `,
+  solution: "Bewertung: 🔴 Vorsicht. Es fehlen App-Name, Quelle, Belege. „Insider“ bleibt anonym. Screenshot ohne Kontext ist kein Beweis."
 };
 
-/* Routing/Anzeige */
+/* Gruppe 2 – Politik (fragwürdig, falsches „Zitat“) */
+const ARTICLE_G2 = {
+  title: "📰 „Wahl ab 12 Jahren schon nächstes Jahr“ – angebliches Minister-Zitat",
+  meta: "Quelle: „Politik-Update Blog“ | 9. April 2025 | Autor: M. H.",
+  body: `
+    Ein Blog schreibt, der „Innenminister“ habe gesagt: „Ab nächstem Jahr dürfen schon 12-Jährige wählen.“
+    Im Beitrag steht kein vollständiger Name, kein Video, kein offizielles Protokoll und kein Link.
+    Als Begründung nennt der Blog nur: „Damit Jugendliche mehr mitbestimmen.“
+    In den Kommentaren steht: „Teilt das, bevor es gelöscht wird!“
+  `,
+  solution: "Bewertung: 🔴 Vorsicht. Sehr starke Behauptung, aber keine belastbaren Belege (kein Name, keine Quelle, kein offizielles Dokument). Der „Teilt das“-Druck ist ein Warnsignal."
+};
+
+/* Gruppe 3 – Gesundheit (fragwürdig, „Wunder“-Tipp) */
+const ARTICLE_G3 = {
+  title: "📰 „Kaugummi mit Zimt stoppt Erkältungen sofort“ – angebliche Ärztin empfiehlt es",
+  meta: "Quelle: gesund-schnell24.de | 8. April 2025 | Autorin: „Dr. L. Berger“",
+  body: `
+    Eine Webseite behauptet: „Zimt-Kaugummi stoppt Erkältungen in 24 Stunden.“
+    Sie schreibt, eine Ärztin aus Hamburg habe das „bei vielen Patient:innen“ getestet.
+    Es gibt aber keine Praxisadresse, keine Studie und keine Zahlen.
+    Unten ist ein Shop-Link: „Jetzt bestellen – nur heute günstiger.“
+  `,
+  solution: "Bewertung: 🔴 Vorsicht. Werbeton + Shop-Link, keine Studie, keine überprüfbare Ärztin/Adresse, keine Zahlen. Klingt nach Werbung statt Medizininfo."
+};
+
+/* Gruppe 4 – Umwelt (fragwürdig, falsche Zahl/„Studie“) */
+const ARTICLE_G4 = {
+  title: "📰 „Bäume sind schuld am Klimawandel“ – angebliche neue Studie",
+  meta: "Quelle: NaturWissen365 | 10. April 2025 | Redaktion",
+  body: `
+    Ein Artikel behauptet: „Bäume machen die Erde wärmer, weil sie Wärme speichern.“
+    Er schreibt außerdem: „Eine Studie beweist: Mehr Bäume = mehr Hitze.“
+    Die Studie wird aber nicht verlinkt. Es gibt keinen Namen von Forschenden.
+    Der Text nutzt viele starke Sätze wie „endlich die Wahrheit“ und „alle wurden getäuscht“.
+  `,
+  solution: "Bewertung: 🔴 Vorsicht. „Studie“ ohne Link/Details ist nicht prüfbar. Sehr polarisierende Sprache („endlich die Wahrheit“) ist ein Warnsignal. Inhalt wirkt unlogisch ohne Daten/Erklärung."
+};
+
+const GROUPS = {
+  g1: { title:"Gruppe 1 – Gesellschaft", lead: UNIFIED_LEAD, article: ARTICLE_G1 },
+  g2: { title:"Gruppe 2 – Politik",      lead: UNIFIED_LEAD, article: ARTICLE_G2 },
+  g3: { title:"Gruppe 3 – Gesundheit",   lead: UNIFIED_LEAD, article: ARTICLE_G3 },
+  g4: { title:"Gruppe 4 – Umwelt",       lead: UNIFIED_LEAD, article: ARTICLE_G4 }
+};
+
+/* ===== Routing ===== */
 function show(id){
   ["view-home","view-work"].forEach(v=>document.getElementById(v).classList.add("hidden"));
   document.getElementById(id).classList.remove("hidden");
 }
-function goHome(){show("view-home");}
+function goHome(){ show("view-home"); resetWork(true); }
+
+let currentGroup = null;
+let currentAmpel = null;
+
 function openGroup(gid){
-  const g = GROUPS[gid];
-  document.getElementById("groupTitle").textContent = g.title;
-  document.getElementById("groupLead").textContent = g.lead;
-  document.getElementById("materialBox").innerHTML = g.material;
+  currentGroup = GROUPS[gid];
+
+  document.getElementById("groupTitle").textContent = currentGroup.title;
+  document.getElementById("groupLead").textContent  = currentGroup.lead;
+
+  // Nachricht (links)
+  const a = currentGroup.article;
+  document.getElementById("newsBox").innerHTML = `
+    <h2>${escapeHtml(a.title)}</h2>
+    <p class="label">${escapeHtml(a.meta)}</p>
+    <hr class="sep">
+    <p>${formatBody(a.body)}</p>
+    <div class="notice small"><strong>Auftrag:</strong> Findet mindestens <strong>3 Warnsignale</strong> oder <strong>3 Belege</strong>.</div>
+  `;
+
+  // Checkliste (rechts)
+  const list = CHECK_ITEMS.map((t,i)=>`
+    <label>
+      <input type="checkbox" id="c${i}" />
+      <span>${escapeHtml(t)}</span>
+    </label>
+  `).join("");
+
+  document.getElementById("checklistBox").innerHTML = list;
+
+  // Lehrkraft-Lösung
+  document.getElementById("teacherSolution").textContent = a.solution;
+
+  // Reset Felder
+  resetWork(true);
   show("view-work");
+}
+
+/* ===== Ampel setzen ===== */
+function setAmpel(which){
+  currentAmpel = which;
+
+  document.querySelectorAll(".ampel").forEach(b=>b.setAttribute("aria-pressed","false"));
+  const btns = document.querySelectorAll(".ampel");
+  const map = {good:0,warn:1,bad:2};
+  btns[map[which]].setAttribute("aria-pressed","true");
+
+  const badge = document.getElementById("hintBadge");
+  if(which==="good") badge.textContent = "Ampel: 🟢 eher glaubwürdig";
+  if(which==="warn") badge.textContent = "Ampel: 🟡 unsicher";
+  if(which==="bad")  badge.textContent = "Ampel: 🔴 Vorsicht!";
+}
+
+/* ===== Ergebnis kopieren ===== */
+function copyResult(){
+  if(!currentGroup){return;}
+  const checked = [];
+  CHECK_ITEMS.forEach((t,i)=>{
+    const box = document.getElementById("c"+i);
+    if(box && box.checked) checked.push("✓ " + t);
+  });
+
+  const ampelText = currentAmpel==="good" ? "🟢 eher glaubwürdig" :
+                    currentAmpel==="warn" ? "🟡 unsicher" :
+                    currentAmpel==="bad"  ? "🔴 Vorsicht!" : "(nicht gewählt)";
+
+  const text =
+`${currentGroup.title}
+Nachricht: ${currentGroup.article.title}
+
+Checkliste (angekreuzt):
+${checked.length ? checked.join("\n") : "(nichts angekreuzt)"}
+
+Belege:
+${document.getElementById("evidence").value.trim() || "(leer)"}
+
+Offene Fragen:
+${document.getElementById("questions").value.trim() || "(leer)"}
+
+Ampel:
+${ampelText}
+
+Begründung:
+${document.getElementById("fazit").value.trim() || "(leer)"}
+`;
+
+  navigator.clipboard.writeText(text).then(()=>{
+    const badge = document.getElementById("hintBadge");
+    const old = badge.textContent;
+    badge.textContent = "Kopiert: Ergebnis in Zwischenablage";
+    setTimeout(()=>badge.textContent = old, 1300);
+  }).catch(()=>{
+    alert("Kopieren ging nicht. Markiere den Text und kopiere manuell.");
+  });
+}
+
+/* ===== Reset ===== */
+function resetWork(keepAmpel=false){
+  // Checkboxes
+  document.querySelectorAll("#checklistBox input[type='checkbox']").forEach(c=>c.checked=false);
+
+  // Textfelder
+  const e = document.getElementById("evidence");
+  const q = document.getElementById("questions");
+  const f = document.getElementById("fazit");
+  if(e) e.value = "";
+  if(q) q.value = "";
+  if(f) f.value = "";
+
+  if(!keepAmpel){
+    currentAmpel = null;
+    document.querySelectorAll(".ampel").forEach(b=>b.setAttribute("aria-pressed","false"));
+    document.getElementById("hintBadge").textContent = "Hinweis: arbeite genau";
+  }
+}
+
+/* ===== Helpers ===== */
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+}
+function formatBody(text){
+  // kurze Absätze, gut lesbar
+  const clean = String(text).trim().replace(/\s+/g," ");
+  // teile an Punkten etwas auf, ohne „zu hacken“
+  const parts = clean.split(". ").map(s=>s.trim()).filter(Boolean);
+  const out = [];
+  let buf = [];
+  for(const p of parts){
+    buf.push(p.endsWith(".") ? p : p + ".");
+    if(buf.join(" ").length > 180){ out.push(buf.join(" ")); buf=[]; }
+  }
+  if(buf.length) out.push(buf.join(" "));
+  return out.map(p=>`<p>${escapeHtml(p)}</p>`).join("");
 }
 </script>
 
